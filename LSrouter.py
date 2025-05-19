@@ -84,7 +84,7 @@ class LSrouter(Router):
             'links': self.ls_db[self.addr]['links']
         }
         
-        packet = Packet(dst_addr=None, src_addr=self.addr, content=json.dumps(ls_data), is_routing=True)
+        packet = Packet(kind=Packet.ROUTING, dst_addr=None, src_addr=self.addr, content=json.dumps(ls_data))
         
         for port in self.links:
             self.send(port, packet)

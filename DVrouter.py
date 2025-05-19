@@ -103,7 +103,7 @@ class DVrouter(Router):
             'addr': self.addr,
             'dv': {dest: info['cost'] for dest, info in self.dv_table.items()}
         }
-        packet = Packet(dst_addr=None, src_addr=self.addr, content=json.dumps(dv_data), is_routing=True)
+        packet = Packet(kind=Packet.ROUTING, dst_addr=None, src_addr=self.addr, content=json.dumps(dv_data))
         for port in self.port_info:
             self.send(port, packet)
 
